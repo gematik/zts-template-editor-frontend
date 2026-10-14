@@ -869,16 +869,26 @@ describe("TemplateForm (updated)", () => {
     expect(mockPerformSave).not.toHaveBeenCalled();
   });
 
-  it("saveVersion: create-mode (valid=true) + hasMr=true => kein Save", async () => {
-    mockWorkspaceDetails.value = { mergeRequest: { id: 1 }, templatesMd: [] };
+  it("saveVersion: create-mode + unverändertes Formular erstellt trotzdem die neue Version", async () => {
+    mockWorkspaceDetails.value = null;
 
     const wrapper = mountPage("create");
     (wrapper.vm as any).validation.pkgValid = true;
 
-    await (wrapper.vm as any).saveVersion();
+    const savePromise = (wrapper.vm as any).saveVersion();
+    await nextTick();
 
-    expect(lastDialogOpts).toBeNull();
-    expect(mockPerformSave).not.toHaveBeenCalled();
+    expect(lastDialogOpts).toBeTruthy();
+    lastDialogOpts.onNegativeClick?.();
+
+    await savePromise;
+
+    expect(mockPerformSave).toHaveBeenCalledTimes(1);
+    expect(mockPerformSave).toHaveBeenCalledWith(
+      expect.any(Array),
+      "1.0.0",
+      false
+    );
   });
 
   it("canWriteComments: edit + mrId => true", async () => {
@@ -1190,15 +1200,22 @@ describe("TemplateForm (updated)", () => {
 
   it("edit: navigateToCreateFromCurrentVersion nutzt die aktuelle Version als Basis", async () => {
     mockVersion.value = "4.2.0";
-    mockDefaultBranch.value = { branch: "dev" };
+    mockDefaultBranch.value = null;
     mockIsVersionReleased.value = true;
     mockCanEdit.value = true;
 
     const wrapper = mountPage("edit");
     await flush();
 
+    const createFromCurrentVersionButton = wrapper.find("#create-from-current-version-btn");
+    expect(createFromCurrentVersionButton.exists()).toBe(false);
+
+    mockDefaultBranch.value = { branch: "dev" };
+    await nextTick();
+    expect(wrapper.find("#create-from-current-version-btn").exists()).toBe(true);
+
     mockRouter.push.mockClear();
-    await (wrapper.vm as any).navigateToCreateFromCurrentVersion();
+    await wrapper.find("#create-from-current-version-btn").trigger("click");
     await flush();
 
     expect(mockPreviousVersionSelected.value).toBe("4.2.0");

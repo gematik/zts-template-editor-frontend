@@ -245,7 +245,7 @@ docker build -t template-editor-frontend .
 ```
 
 ## Contributing
-If you want to contribute, please check our [CONTRIBUTING.md](./CONTRIBUTING.md).
+If you want to contribute, please check our [CONTRIBUTING.md](./.github/CONTRIBUTING.md).
 
 ## License
 

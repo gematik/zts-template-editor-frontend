@@ -464,7 +464,11 @@ const isReleasedVersionEditMode = computed(() => {
 });
 
 const canCreateFromCurrentVersion = computed(() => {
-  return modeRef.value === "edit" && !!isVersionReleased?.value && canEdit.value && !!version.value;
+  return modeRef.value === "edit" &&
+    !!isVersionReleased?.value &&
+    canEdit.value &&
+    !!version.value &&
+    !!defaultBranch.value?.branch;
 });
 
 const previousVersionsOptions = computed(() => {
@@ -875,9 +879,9 @@ const saveVersion = async () => {
 
   const noChanges = !hasUiChanges.value;
 
-  // Open 'cancel or review' diaglog if no changes exist and we are not editing a released version.
-  if (noChanges) {
-    if ((modeRef.value !== "edit" || hasMr.value)) return;
+  // Open 'cancel or review' dialog if no changes exist, and we are not editing a released version.
+  if (noChanges && modeRef.value === "edit") {
+    if (hasMr.value) return;
 
     const decision = await new Promise<"mr" | "cancel">((resolve) => {
       dialog.warning({
@@ -1063,7 +1067,11 @@ const navigateToCreate = async () => {
 
 const navigateToCreateFromCurrentVersion = async () => {
   previousVersionSelected.value = version.value;
-  navigateToCreateFrom();
+  try {
+    await navigateToCreateFrom();
+  } catch (error) {
+    statusMessage.value = toErrorStatusMessage(error, "Die neue Version konnte nicht geöffnet werden.");
+  }
 };
 
 const hasUnsavedPublisherChanges = () => {

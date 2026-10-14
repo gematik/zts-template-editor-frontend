@@ -500,7 +500,7 @@ describe('useTemplatesManagement', () => {
         expect(commitWorkspaceMock).not.toHaveBeenCalled();
     });
 
-    it('performSave erstellt im create mode Feature-Branch und navigiert danach', async () => {
+    it('performSave erstellt zuerst den Feature-Branch und startet danach das Review', async () => {
         vi.useFakeTimers();
 
         const m = useTemplatesManagement('create');
@@ -519,8 +519,16 @@ describe('useTemplatesManagement', () => {
             version: '2.0.0',
             message: 'Neues Package für die Version 2.0.0 des FHIR Package demo-package auf Branch feature/2.0.0 erstellt',
             changes: [{ path: 'a', content: 'b' }],
-            createMergeRequest: true,
+            createMergeRequest: false,
         });
+        expect(commitWorkspaceReviewMock).toHaveBeenCalledWith({
+            repositoryId: '42',
+            branch: 'feature/2.0.0',
+            title: 'Review of 2.0.0',
+        });
+        expect(commitWorkspaceMock.mock.invocationCallOrder[0]).toBeLessThan(
+            commitWorkspaceReviewMock.mock.invocationCallOrder[0]!
+        );
 
         expect(mockRouterPush).toHaveBeenCalledWith({
             name: 'versionDetails',
@@ -533,6 +541,35 @@ describe('useTemplatesManagement', () => {
         });
 
         expect(m.statusMessage.value.type).toBe('success');
+    });
+
+    it('performSave navigates to the created branch when starting its review fails', async () => {
+        vi.useFakeTimers();
+        commitWorkspaceReviewMock.mockRejectedValueOnce(new Error('Source branch does not exist'));
+
+        const m = useTemplatesManagement('create');
+        await flushAll();
+
+        const savePromise = m.performSave([{ path: 'a', content: 'b' } as any], '2.0.0', true);
+
+        await vi.advanceTimersByTimeAsync(1500);
+        await savePromise;
+
+        expect(commitWorkspaceMock).toHaveBeenCalledWith(expect.objectContaining({
+            branch: 'feature/2.0.0',
+            createMergeRequest: false,
+        }));
+        expect(mockRouterPush).toHaveBeenCalledWith({
+            name: 'versionDetails',
+            params: {
+                projectId: '42',
+                packageName: 'demo-package',
+                version: '2.0.0',
+                workspace: 'feature/2.0.0',
+            },
+        });
+        expect(m.statusMessage.value.type).toBe('error');
+        expect(m.statusMessage.value.message).toContain('Source branch does not exist');
     });
 
     it('performSave speichert auf Feature-Branch wenn veröffentlichte Version auf geschütztem Branch bearbeitet wird', async () => {

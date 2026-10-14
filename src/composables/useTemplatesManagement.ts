@@ -357,14 +357,35 @@ export function useTemplatesManagement(mode: MaybeRef<VersionMode> = MODE_EDIT) 
         version: saveContext.targetVersion,
         message,
         changes: commitChanges,
-        createMergeRequest,
+        createMergeRequest: createMergeRequest && !saveContext.isCreateMode,
       });
 
-      templatesLogger.info('The save operation was completed successfully.', {
-        targetBranch: saveContext.targetBranch,
-        targetVersion: saveContext.targetVersion,
-      });
-      statusMessage.value = toSuccessStatusMessage(message);
+      let reviewError: unknown;
+      if (createMergeRequest && saveContext.isCreateMode) {
+        try {
+          await commitWorkspaceReview({
+            repositoryId: projectId.value,
+            branch: saveContext.targetBranch,
+            title: `Review of ${saveContext.targetVersion}`,
+          });
+        } catch (error) {
+          templatesLogger.error('The version was created, but starting its review failed.', error);
+          reviewError = error;
+        }
+      }
+
+      if (!reviewError) {
+        templatesLogger.info('The save operation was completed successfully.', {
+          targetBranch: saveContext.targetBranch,
+          targetVersion: saveContext.targetVersion,
+        });
+      }
+      statusMessage.value = reviewError
+        ? toErrorStatusMessage(
+          reviewError,
+          'Die Version wurde erstellt, aber das Review konnte nicht gestartet werden.'
+        )
+        : toSuccessStatusMessage(message);
 
       if (saveContext.isCreateMode || saveContext.saveOnFeatureBranch) {
         await new Promise((resolve) => setTimeout(resolve, 1500));

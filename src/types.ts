@@ -39,7 +39,8 @@ export type VersionItem = {
   version: string;
   lastModified: string;
   mrStatus?: 'Final' | 'Draft' | 'in Review' | 'Released Edit' | 'Error';
-  mergeRequest?: MergeRequestRef
+  mergeRequest?: MergeRequestRef;
+  pipeline?: PipelineRef;
   branch?: string;
 };
 
@@ -63,6 +64,7 @@ export type BranchItem = {
   isDefaultBranch: boolean;
   isProtected: boolean;
   mergeRequest: MergeRequestRef | null;
+  pipeline: PipelineRef | null;
 };
 
 export interface PackageModel {
@@ -190,6 +192,7 @@ export type WorkspaceDetails = {
   downloadConditionsXml: string;
   inputFiles: InputFiles[];
   mergeRequest?: MergeRequestRef | null;
+  pipeline?: PipelineRef | null;
 };
 export type CommitResponse = {
   commitId?: string;
@@ -209,6 +212,14 @@ export type CommitChange = {
 export type MergeRequestRef = {
   id: number;
   webUrl?: string;
+};
+
+export type PipelineRef = {
+  id: number;
+  status: string;
+  webUrl?: string;
+  updatedAt: string;
+  finishedAt: string | null;
 };
 
 // comments

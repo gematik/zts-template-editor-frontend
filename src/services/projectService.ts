@@ -70,6 +70,7 @@ export async function loadMrStatusForVersions(project: ProjectItem): Promise<Ver
         augmentedVersionsMap.set(itemKey(v.version, defaultBranch.branch), {
             ...v,
             mergeRequest: defaultBranch.mergeRequest || null,
+            pipeline: defaultBranch.pipeline || null,
             mrStatus: 'Final',
             branch: defaultBranch.branch
         } as VersionItem);
@@ -98,6 +99,7 @@ export async function loadMrStatusForVersions(project: ProjectItem): Promise<Ver
             title: project.title,
             lastModified: fBranch.lastModified ?? '',
             mergeRequest: mrObject,
+            pipeline: fBranch.pipeline,
             mrStatus,
             branch: fBranch.branch
         } as VersionItem);

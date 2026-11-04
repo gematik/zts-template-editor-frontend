@@ -212,11 +212,10 @@ export function useProjects() {
     if (!isLoggedIn.value) return;
     store.loading.value = true;
     store.progress.value = 5;
-    try {
-      const progressInterval = setInterval(() => {
+          const progressInterval = setInterval(() => {
         if (store.progress.value < 30) store.progress.value += 1;
       }, 100);
-
+    try {
       const loadedProjects = await fetchProjects();
       clearInterval(progressInterval);
       store.projects.value = loadedProjects.map(p => {
@@ -273,6 +272,7 @@ export function useProjects() {
         store.progress.value = 0;
         store.progressResetTimeout = undefined;
       }, 500);
+      clearInterval(progressInterval);
     }
   }
 

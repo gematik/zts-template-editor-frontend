@@ -118,8 +118,8 @@ describe('listBranches', () => {
         const params = { repositoryId: '123' };
         const expected = '/api/workspaces?repositoryId=123';
         const mockBranches: BranchItem[] = [
-            { branch: 'main', lastModified: '2024-01-01', author: 'alice', isDefaultBranch: true, isProtected: true, mergeRequest: null },
-            { branch: 'dev', lastModified: '2024-01-02', author: 'bob', isDefaultBranch: false, isProtected: false, mergeRequest: null }
+            { branch: 'main', lastModified: '2024-01-01', author: 'alice', isDefaultBranch: true, isProtected: true, mergeRequest: null, pipeline: null },
+            { branch: 'dev', lastModified: '2024-01-02', author: 'bob', isDefaultBranch: false, isProtected: false, mergeRequest: null, pipeline: null }
         ];
         mockApi.mockResolvedValue(mockBranches);
 

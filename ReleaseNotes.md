@@ -2,11 +2,21 @@
 
 # Release Notes
 
+## 1.1.0 (2026-11)
+
+### changed
+
+- Added icons/buttons for gitlab pipelines
+- Updated dependencies
+- Updated base image
+
 ## 1.0.6 (2026-10)
 
 ### changed
 
 - tightened Content-Security-Policy
+- Updated dependencies
+- Updated base image
 
 ### fixed
 

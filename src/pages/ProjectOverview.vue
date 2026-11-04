@@ -24,6 +24,7 @@ import { onMounted, onUnmounted, watch } from 'vue';
 import { useProjects } from '../composables/useProjects';
 import { NButton, NSpace, NSpin, NAlert, NTooltip, useDialog } from 'naive-ui';
 import { useStatusMessage } from '../composables/useStatusMessage';
+import PipelineStatus from '../components/PipelineStatus.vue';
 
 const dialog = useDialog();
 const {
@@ -160,20 +161,32 @@ onUnmounted(() => {
             <div v-if="!p.versions"><n-space><n-spin size="medium" /></n-space></div>
             <div v-else-if="p.versions.length" class="version-list">
               <div v-for="v in p.versions" :key="p.title + '@' + v.version + '@' + (v.branch || '')" class="version-item-flex-wrapper">
-                <router-link class="version-item flex-grow flex items-center justify-between pr-3"
-                  :to="{ name: 'versionDetails', params: { projectId: p.projectId, packageName: p.title, version: v.version, workspace: v.branch } }">
-                  <div>
-                    <div class="version-title">FHIR Package Version: {{ v.version }}</div>
-                    <div class="version-date">Letzte Änderung: {{ fmtDate(v.lastModified) }}</div>
+                <div class="version-item flex-grow flex items-center justify-between pr-3">
+                  <router-link class="flex-grow"
+                    :to="{ name: 'versionDetails', params: { projectId: p.projectId, packageName: p.title, version: v.version, workspace: v.branch } }">
+                    <div>
+                      <div class="version-title">FHIR Package Version: {{ v.version }}</div>
+                      <div class="version-date">Letzte Änderung: {{ fmtDate(v.lastModified) }}</div>
+                    </div>
+                  </router-link>
+
+                  <div class="inline-flex items-center gap-3">
+                    <PipelineStatus :pipeline="v.pipeline"/>
+
+                    <router-link class="flex-grow"
+                      :to="{ name: 'versionDetails', params: { projectId: p.projectId, packageName: p.title, version: v.version, workspace: v.branch } }">
+
+                        <NTooltip v-if="v.mrStatus === 'Released Edit'" trigger="hover">
+                          <template #trigger>
+                            <span :class="['badge', badgeClass('in Review')]"><strong>in Review</strong></span>
+                          </template>
+                          Diese Version ist bereits veröffentlicht und hat aktuell Änderungen im Review.
+                        </NTooltip>
+                        <span v-else :class="['badge', badgeClass(v.mrStatus ?? '')]"><strong>{{ v.mrStatus }}</strong></span>
+
+                    </router-link>
                   </div>
-                  <NTooltip v-if="v.mrStatus === 'Released Edit'" trigger="hover">
-                    <template #trigger>
-                      <span :class="['badge', badgeClass('in Review')]"><strong>in Review</strong></span>
-                    </template>
-                    Diese Version ist bereits veröffentlicht und hat aktuell Änderungen im Review.
-                  </NTooltip>
-                  <span v-else :class="['badge', badgeClass(v.mrStatus ?? '')]"><strong>{{ v.mrStatus }}</strong></span>
-                </router-link>
+                </div>
 
                 <NTooltip v-if="v.mrStatus !== 'Final'" trigger="hover">
                   <template #trigger>

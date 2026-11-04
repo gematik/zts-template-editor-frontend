@@ -246,7 +246,7 @@ describe("TemplateMarkdownsSection.vue", () => {
         const fc = wrapper.findAll(".field-comments-stub");
         expect(fc.length).toBeGreaterThan(0);
 
-        const fcComp = wrapper.findComponent(FieldCommentsStub as any);
+        const fcComp = wrapper.findComponent({ name: "FieldComments" });
         expect(fcComp.exists()).toBe(true);
         expect((fcComp.props() as any).fileName).toBe("index.json");
     });

@@ -66,7 +66,8 @@ describe('Typdefinitionen (types.ts)', () => {
       author: 'Tester',
       isDefaultBranch: false,
       isProtected: true,
-      mergeRequest: { id: 2, webUrl: 'http://gitlab/mr/2' }
+      mergeRequest: { id: 2, webUrl: 'http://gitlab/mr/2' },
+      pipeline: { id: 2, status: "success", webUrl: "http://pipeline-url", updatedAt: "2024-01-01T00:00:00Z", finishedAt: "2025-01-01T00:00:00Z" }
     };
     expect(branch.branch).toBe('feature/2023.0.0');
     expect(branch.isProtected).toBe(true);

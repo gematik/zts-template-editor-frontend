@@ -184,5 +184,10 @@ vi.mock('@vicons/fluent', () => {
     Archive48Regular: IconStub,
     Document48Regular: IconStub,
     Delete24Regular: IconStub,
+    CheckmarkCircle24Filled: IconStub,
+    DismissCircle24Filled: IconStub,
+    Clock24Regular: IconStub,
+    ErrorCircle24Filled: IconStub,
+    PauseCircle24Regular: IconStub,
   };
 });

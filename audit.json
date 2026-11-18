@@ -1,22 +1,717 @@
 {
   "auditReportVersion": 2,
-  "vulnerabilities": {},
+  "vulnerabilities": {
+    "@css-render/plugin-bem": {
+      "name": "@css-render/plugin-bem",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "css-render"
+      ],
+      "effects": [],
+      "range": ">=0.13.0",
+      "nodes": [
+        "node_modules/@css-render/plugin-bem"
+      ],
+      "fixAvailable": true
+    },
+    "@emotion/hash": {
+      "name": "@emotion/hash",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 4,
+          "name": "@emotion/hash",
+          "dependency": "@emotion/hash",
+          "title": "Architecture-Quality",
+          "url": "Found component older than 5 years",
+          "severity": "low",
+          "cwe": null,
+          "cvss": null,
+          "range": "*"
+        }
+      ],
+      "effects": [
+        "css-render"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@emotion/hash"
+      ],
+      "fixAvailable": {
+        "name": "naive-ui",
+        "version": "0.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@parcel/watcher": {
+      "name": "@parcel/watcher",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "is-glob"
+      ],
+      "effects": [
+        "sass"
+      ],
+      "range": ">=2.1.0",
+      "nodes": [
+        "node_modules/@parcel/watcher"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "@tailwindcss/typography": {
+      "name": "@tailwindcss/typography",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "postcss-selector-parser"
+      ],
+      "effects": [],
+      "range": "<=0.0.0-insiders.fda8ce5 || >=0.5.5",
+      "nodes": [
+        "node_modules/@tailwindcss/typography"
+      ],
+      "fixAvailable": {
+        "name": "@tailwindcss/typography",
+        "version": "0.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@vue-macros/common": {
+      "name": "@vue-macros/common",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@vue/compiler-sfc"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@vue-macros/common"
+      ],
+      "fixAvailable": true
+    },
+    "@vue/compiler-core": {
+      "name": "@vue/compiler-core",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "estree-walker"
+      ],
+      "effects": [
+        "@vue/compiler-dom"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@vue/compiler-core"
+      ],
+      "fixAvailable": false
+    },
+    "@vue/compiler-dom": {
+      "name": "@vue/compiler-dom",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@vue/compiler-core"
+      ],
+      "effects": [
+        "@vue/compiler-ssr",
+        "vue"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@vue/compiler-dom"
+      ],
+      "fixAvailable": false
+    },
+    "@vue/compiler-sfc": {
+      "name": "@vue/compiler-sfc",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@vue/compiler-core",
+        "@vue/compiler-dom",
+        "@vue/compiler-ssr",
+        "estree-walker"
+      ],
+      "effects": [
+        "@vue-macros/common",
+        "vue",
+        "vue-router"
+      ],
+      "range": ">=3.0.0-alpha.0",
+      "nodes": [
+        "node_modules/@vue/compiler-sfc"
+      ],
+      "fixAvailable": {
+        "name": "vue-router",
+        "version": "4.6.5",
+        "isSemVerMajor": true
+      }
+    },
+    "@vue/compiler-ssr": {
+      "name": "@vue/compiler-ssr",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@vue/compiler-dom"
+      ],
+      "effects": [
+        "@vue/server-renderer"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@vue/compiler-ssr"
+      ],
+      "fixAvailable": false
+    },
+    "@vue/server-renderer": {
+      "name": "@vue/server-renderer",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@vue/compiler-ssr"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@vue/server-renderer"
+      ],
+      "fixAvailable": false
+    },
+    "@vueuse/core": {
+      "name": "@vueuse/core",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@vueuse/shared",
+        "vue"
+      ],
+      "effects": [],
+      "range": "3.0.0-alpha.5 - 3.0.35 || >=12.0.0-beta.1",
+      "nodes": [
+        "node_modules/@vueuse/core"
+      ],
+      "fixAvailable": {
+        "name": "@vueuse/core",
+        "version": "11.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "@vueuse/shared": {
+      "name": "@vueuse/shared",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "vue"
+      ],
+      "effects": [
+        "@vueuse/core"
+      ],
+      "range": ">=12.0.0-beta.1",
+      "nodes": [
+        "node_modules/@vueuse/shared"
+      ],
+      "fixAvailable": {
+        "name": "@vueuse/core",
+        "version": "11.3.0",
+        "isSemVerMajor": true
+      }
+    },
+    "ast-kit": {
+      "name": "ast-kit",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "estree-walker"
+      ],
+      "effects": [
+        "ast-walker-scope"
+      ],
+      "range": ">=3.0.0-beta.1",
+      "nodes": [
+        "node_modules/ast-walker-scope/node_modules/ast-kit"
+      ],
+      "fixAvailable": {
+        "name": "vue-router",
+        "version": "4.6.5",
+        "isSemVerMajor": true
+      }
+    },
+    "ast-walker-scope": {
+      "name": "ast-walker-scope",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "ast-kit"
+      ],
+      "effects": [
+        "vue-router"
+      ],
+      "range": ">=0.10.0",
+      "nodes": [
+        "node_modules/ast-walker-scope"
+      ],
+      "fixAvailable": {
+        "name": "vue-router",
+        "version": "4.6.5",
+        "isSemVerMajor": true
+      }
+    },
+    "css-render": {
+      "name": "css-render",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@emotion/hash"
+      ],
+      "effects": [
+        "@css-render/plugin-bem",
+        "naive-ui",
+        "vueuc"
+      ],
+      "range": ">=0.12.0",
+      "nodes": [
+        "node_modules/css-render"
+      ],
+      "fixAvailable": {
+        "name": "naive-ui",
+        "version": "0.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "estree-walker": {
+      "name": "estree-walker",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 6,
+          "name": "estree-walker",
+          "dependency": "estree-walker",
+          "title": "Architecture-Quality",
+          "url": "Found component older than 5 years",
+          "severity": "low",
+          "cwe": null,
+          "cvss": null,
+          "range": "*"
+        }
+      ],
+      "effects": [
+        "@vue/compiler-core",
+        "@vue/compiler-sfc",
+        "ast-kit"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/ast-walker-scope/node_modules/estree-walker",
+        "node_modules/estree-walker"
+      ],
+      "fixAvailable": false
+    },
+    "has-flag": {
+      "name": "has-flag",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 8,
+          "name": "has-flag",
+          "dependency": "has-flag",
+          "title": "Architecture-Quality",
+          "url": "Found component older than 5 years",
+          "severity": "low",
+          "cwe": null,
+          "cvss": null,
+          "range": "*"
+        }
+      ],
+      "effects": [
+        "supports-color"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/has-flag"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "is-extglob": {
+      "name": "is-extglob",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 7,
+          "name": "is-extglob",
+          "dependency": "is-extglob",
+          "title": "Architecture-Quality",
+          "url": "Found component older than 5 years",
+          "severity": "low",
+          "cwe": null,
+          "cvss": null,
+          "range": "*"
+        }
+      ],
+      "effects": [
+        "is-glob"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/is-extglob"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "is-glob": {
+      "name": "is-glob",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 5,
+          "name": "is-glob",
+          "dependency": "is-glob",
+          "title": "Architecture-Quality",
+          "url": "Found component older than 5 years",
+          "severity": "low",
+          "cwe": null,
+          "cvss": null,
+          "range": "*"
+        },
+        "is-extglob"
+      ],
+      "effects": [
+        "@parcel/watcher"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/is-glob"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "naive-ui": {
+      "name": "naive-ui",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@css-render/plugin-bem",
+        "css-render",
+        "vueuc"
+      ],
+      "effects": [],
+      "range": ">=2.11.0",
+      "nodes": [
+        "node_modules/naive-ui"
+      ],
+      "fixAvailable": {
+        "name": "naive-ui",
+        "version": "0.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "postcss-selector-parser": {
+      "name": "postcss-selector-parser",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "util-deprecate"
+      ],
+      "effects": [
+        "@tailwindcss/typography"
+      ],
+      "range": ">=6.0.3",
+      "nodes": [
+        "node_modules/postcss-selector-parser"
+      ],
+      "fixAvailable": {
+        "name": "@tailwindcss/typography",
+        "version": "0.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "sass": {
+      "name": "sass",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@parcel/watcher"
+      ],
+      "effects": [
+        "sass-embedded-all-unknown",
+        "sass-embedded-unknown-all"
+      ],
+      "range": ">=1.79.5",
+      "nodes": [
+        "node_modules/sass"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "sass-embedded": {
+      "name": "sass-embedded",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "sass-embedded-all-unknown",
+        "sass-embedded-unknown-all",
+        "supports-color",
+        "varint"
+      ],
+      "effects": [
+        "vite"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/sass-embedded"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "sass-embedded-all-unknown": {
+      "name": "sass-embedded-all-unknown",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "sass"
+      ],
+      "effects": [
+        "sass-embedded"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/sass-embedded-all-unknown"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "sass-embedded-unknown-all": {
+      "name": "sass-embedded-unknown-all",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "sass"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/sass-embedded-unknown-all"
+      ],
+      "fixAvailable": true
+    },
+    "supports-color": {
+      "name": "supports-color",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 2,
+          "name": "supports-color",
+          "dependency": "supports-color",
+          "title": "Architecture-Quality",
+          "url": "Found component older than 5 years",
+          "severity": "low",
+          "cwe": null,
+          "cvss": null,
+          "range": "*"
+        },
+        "has-flag"
+      ],
+      "effects": [
+        "sass-embedded"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/supports-color"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "util-deprecate": {
+      "name": "util-deprecate",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 3,
+          "name": "util-deprecate",
+          "dependency": "util-deprecate",
+          "title": "Architecture-Quality",
+          "url": "Found component older than 5 years",
+          "severity": "low",
+          "cwe": null,
+          "cvss": null,
+          "range": "*"
+        }
+      ],
+      "effects": [
+        "postcss-selector-parser"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/util-deprecate"
+      ],
+      "fixAvailable": {
+        "name": "@tailwindcss/typography",
+        "version": "0.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "varint": {
+      "name": "varint",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1,
+          "name": "varint",
+          "dependency": "varint",
+          "title": "Architecture-Quality",
+          "url": "Found component older than 5 years",
+          "severity": "low",
+          "cwe": null,
+          "cvss": null,
+          "range": "*"
+        }
+      ],
+      "effects": [
+        "sass-embedded"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/varint"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "vite": {
+      "name": "vite",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "sass-embedded"
+      ],
+      "effects": [
+        "vue-router"
+      ],
+      "range": ">=5.4.0-beta.0",
+      "nodes": [
+        "node_modules/vite"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
+    },
+    "vue": {
+      "name": "vue",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@vue/compiler-dom",
+        "@vue/compiler-sfc",
+        "@vue/server-renderer"
+      ],
+      "effects": [
+        "@vueuse/core",
+        "@vueuse/shared",
+        "vue-router"
+      ],
+      "range": ">=3.0.0-alpha.0",
+      "nodes": [
+        "node_modules/vue"
+      ],
+      "fixAvailable": {
+        "name": "vue",
+        "version": "3.2.12",
+        "isSemVerMajor": true
+      }
+    },
+    "vue-router": {
+      "name": "vue-router",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "@vue-macros/common",
+        "@vue/compiler-sfc",
+        "ast-walker-scope",
+        "vite",
+        "vue"
+      ],
+      "effects": [],
+      "range": ">=4.6.0",
+      "nodes": [
+        "node_modules/vue-router"
+      ],
+      "fixAvailable": {
+        "name": "vue-router",
+        "version": "4.6.5",
+        "isSemVerMajor": true
+      }
+    },
+    "vueuc": {
+      "name": "vueuc",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "css-render"
+      ],
+      "effects": [],
+      "range": ">=0.2.0",
+      "nodes": [
+        "node_modules/vueuc"
+      ],
+      "fixAvailable": true
+    }
+  },
   "metadata": {
     "vulnerabilities": {
       "info": 0,
-      "low": 0,
+      "low": 32,
       "moderate": 0,
       "high": 0,
       "critical": 0,
-      "total": 0
+      "total": 32
     },
     "dependencies": {
-      "prod": 182,
-      "dev": 108,
-      "optional": 93,
-      "peer": 8,
+      "prod": 174,
+      "dev": 102,
+      "optional": 82,
+      "peer": 0,
       "peerOptional": 0,
-      "total": 390
+      "total": 357
     }
   }
 }

@@ -2,6 +2,14 @@
 
 # Release Notes
 
+## 1.1.1 (2026-11)
+
+### changed
+
+- Updated dependencies
+- Updated base image
+- Disabled http2 waiting for mitigation
+
 ## 1.1.0 (2026-11)
 
 ### changed

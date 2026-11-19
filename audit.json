@@ -497,18 +497,12 @@
       "via": [
         "sass"
       ],
-      "effects": [
-        "sass-embedded"
-      ],
+      "effects": [],
       "range": "*",
       "nodes": [
         "node_modules/sass-embedded-all-unknown"
       ],
-      "fixAvailable": {
-        "name": "vite",
-        "version": "5.3.6",
-        "isSemVerMajor": true
-      }
+      "fixAvailable": true
     },
     "sass-embedded-unknown-all": {
       "name": "sass-embedded-unknown-all",
@@ -517,12 +511,18 @@
       "via": [
         "sass"
       ],
-      "effects": [],
+      "effects": [
+        "sass-embedded"
+      ],
       "range": "*",
       "nodes": [
         "node_modules/sass-embedded-unknown-all"
       ],
-      "fixAvailable": true
+      "fixAvailable": {
+        "name": "vite",
+        "version": "5.3.6",
+        "isSemVerMajor": true
+      }
     },
     "supports-color": {
       "name": "supports-color",

@@ -2,6 +2,12 @@
 
 # Release Notes
 
+## 1.1.2 (2026-11)
+
+### changed
+
+- Updated nginx to 1.31.9
+
 ## 1.1.1 (2026-11)
 
 ### changed
